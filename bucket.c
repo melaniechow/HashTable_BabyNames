@@ -45,17 +45,15 @@ void bucket_show(bucket* b)
 
 void bucket_free(bucket* b)
 {
+	bucket *to_free;
 	while (b != NULL){
-		bucket *to_free=b;
+		to_free=b;
 		b=b->next;
 
 		//char *str = (char *)malloc(sizeof(char));
 		//str=strdup(to_free->string);
 		free(to_free->string);
-		if (to_free->next != NULL){
-			to_free->next = NULL;
-			free(to_free->next);
-		}
 		free(to_free);
 	}
+	free(b);
 }
