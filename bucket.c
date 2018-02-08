@@ -38,7 +38,7 @@ int bucket_contains(const char* s, unsigned long int hash, bucket* b)
 void bucket_show(bucket* b)
 {
 	while (b != NULL){
-		fprintf(stdout, "(%s, %lu)", b->string, b->hash); 
+		fprintf(stdout, "(%s, %lu)", b->string, b->hash);
 		b=b->next;
 	}
 }
@@ -52,7 +52,7 @@ void bucket_free(bucket* b)
 		char *str = (char *)malloc(sizeof(char));
 		str=strdup(to_free->string);
 		free(str);
+		free(b->next);
 		free(to_free);
 	}
 }
-
