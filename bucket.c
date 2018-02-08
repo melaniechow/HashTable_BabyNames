@@ -10,8 +10,6 @@ bucket* bucket_cons(const char* s, unsigned long int hash, bucket* prev_head)
 	add_bucket->hash = hash;
 	add_bucket->next = prev_head;
 	return add_bucket;
-  	fprintf(stderr,"todo: bucket_cons\n");
-  	exit(1);
 }
 
 size_t bucket_size(bucket* b)
@@ -22,8 +20,6 @@ size_t bucket_size(bucket* b)
 		b=b->next;
 	}
 	return num;
- 	fprintf(stderr,"todo: bucket_size\n");
-	exit(1);
 }
 
 int bucket_contains(const char* s, unsigned long int hash, bucket* b)
@@ -33,15 +29,10 @@ int bucket_contains(const char* s, unsigned long int hash, bucket* b)
 			if (strcmp (s, b->string) == 0){
 				return 1;
 			}
-			else {
-				return 0;
-			}
 		}
 		b=b->next;
 	}
 	return 0;
-	fprintf(stderr,"todo: bucket_contains\n");
-	exit(1);
 }
 
 void bucket_show(bucket* b)
@@ -50,8 +41,6 @@ void bucket_show(bucket* b)
 		fprintf(stdout, "(%s, %lu)", b->string, b->hash); 
 		b=b->next;
 	}
-	fprintf(stderr,"todo: bucket_show\n");
-	exit(1);
 }
 
 void bucket_free(bucket* b)
@@ -60,12 +49,10 @@ void bucket_free(bucket* b)
 		bucket *to_free=b;
 		b=b->next;
 
-		char *str = malloc(sizeof (char));
+		char *str = (char *)malloc(sizeof(char));
 		str=strdup(to_free->string);
 		free(str);
 		free(to_free);
 	}
-	fprintf(stderr,"todo: bucket_free\n");
-	exit(1);
 }
 
