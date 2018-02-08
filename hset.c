@@ -89,11 +89,12 @@ void hset_show(hset* hs)
 void hset_free(hset* hs)
 {
 	 if (hs==NULL){
-                fprintf(stderr,"todo: hset_free\n");
-                exit(1);
+		 fprintf(stderr,"todo: hset_free\n");
+		 exit(1);
 	}
 	for (int i=0; i<hs->n_buckets ; i++){
 		bucket_free(hs->buckets[i]);
 	}
+	free(hs->buckets);
 	free(hs);
 }
