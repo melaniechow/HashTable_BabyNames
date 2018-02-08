@@ -49,11 +49,9 @@ void bucket_free(bucket* b)
 		bucket *to_free=b;
 		b=b->next;
 
-		char *str = (char *)malloc(sizeof(char));
-		str=strdup(to_free->string);
-		free(str);
-		to_free->next = NULL;
-		free(to_free->next);
+		//char *str = (char *)malloc(sizeof(char));
+		//str=strdup(to_free->string);
+		free(to_free->string);
 		free(to_free);
 	}
 }
