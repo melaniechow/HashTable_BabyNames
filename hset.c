@@ -23,7 +23,6 @@ hset* hset_new(unsigned long int(*hash_func)(const char*), size_t sz)
 	hset *hset_ret=malloc(sizeof (hset));
 	hset_ret->hash_func = hash_func;
 	bucket **new_buckets=(bucket **)malloc(sizeof(bucket) * sz);
-//	new_buckets=NULL;
 	hset_ret->buckets=new_buckets;
 	hset_ret->n_buckets=sz;
 	return hset_ret;
