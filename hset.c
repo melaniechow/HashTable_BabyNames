@@ -23,6 +23,10 @@ hset* hset_new(unsigned long int(*hash_func)(const char*), size_t sz)
 	hset *hset_ret=malloc(sizeof (hset));
 	hset_ret->hash_func = hash_func;
 	bucket **new_buckets=(bucket **)malloc(sizeof(bucket) * sz);
+	//set each pointer in the array to an empty bucket, "NULL"
+	for (int i=0; i<sz;i++){
+		new_buckets[i]=NULL;
+	}
 	hset_ret->buckets=new_buckets;
 	hset_ret->n_buckets=sz;
 	return hset_ret;
@@ -38,7 +42,7 @@ size_t hset_size(hset* hs)
 }
 
 double hset_load_factor(hset* hs)
-{	
+{
 	double ret=(hset_size(hs)*1.0)/(hs->n_buckets);
 	return ret;
 }
@@ -51,7 +55,7 @@ size_t hset_max_bucket(hset* hs)
 		compareVal=bucket_size(hs->buckets[i]);
 		if (max < compareVal){
 			max=compareVal;
-		}	
+		}
 	}
 	return max;
 }
@@ -93,4 +97,3 @@ void hset_free(hset* hs)
 	}
 	free(hs);
 }
-
