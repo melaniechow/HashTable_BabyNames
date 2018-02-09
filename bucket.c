@@ -53,6 +53,7 @@ void bucket_free(bucket* b)
 		//char *str = (char *)malloc(sizeof(char));
 		//str=strdup(to_free->string);
 		free(to_free->string);
+		free(to_free->next);
 		free(to_free);
 	}
 	free(b);
