@@ -6,7 +6,8 @@
 unsigned long int good_hash(const char* s)
 {
 	unsigned long int ret=17;
-	for (int i=0; i<strlen(s);i++){
+	int ctr=strlen(s);
+	for (int i=0; i<ctr;i++){
 		ret=ret*37 + s[i];
 	}
 	return ret;
@@ -20,9 +21,9 @@ unsigned long int bad_hash(const char* s)
 
 hset* hset_new(unsigned long int(*hash_func)(const char*), size_t sz)
 {
-	hset *hset_ret=malloc(sizeof (hset));
+	hset *hset_ret=malloc(sizeof(hset));
 	hset_ret->hash_func = hash_func;
-	bucket **new_buckets=(bucket**)malloc(sizeof(bucket) * sz);
+	bucket **new_buckets=malloc(sizeof(bucket) * sz);
 	//set each pointer in the array to an empty bucket, "NULL"
 	for (int i=0; i<sz;i++){
 		new_buckets[i]=NULL;
@@ -35,7 +36,8 @@ hset* hset_new(unsigned long int(*hash_func)(const char*), size_t sz)
 size_t hset_size(hset* hs)
 {
 	size_t ret=0;
-	for (int i=0; i<hs->n_buckets; i++){
+	size_t ctr=hs->n_buckets;
+	for (int i=0; i<ctr; i++){
 		ret+=bucket_size(hs->buckets[i]);
 	}
 	return ret;
@@ -51,7 +53,8 @@ size_t hset_max_bucket(hset* hs)
 {
 	size_t max=0;
 	size_t compareVal;
-	for (int i=0; i<hs->n_buckets; i++){
+	size_t ctr=hs->n_buckets;
+	for (int i=0; i<ctr; i++){
 		compareVal=bucket_size(hs->buckets[i]);
 		if (max < compareVal){
 			max=compareVal;
@@ -79,7 +82,8 @@ int hset_contains(const char* s, hset* hs)
 
 void hset_show(hset* hs)
 {
-	for (int i=0; i<hs->n_buckets ; i++){
+	size_t ctr=hs->n_buckets;
+	for (int i=0; i<ctr ; i++){
 		fprintf(stdout, "%d : ", i);
 		bucket_show(hs->buckets[i]);
 		fprintf(stdout, "\n");
@@ -92,7 +96,8 @@ void hset_free(hset* hs)
 		 fprintf(stderr,"todo: hset_free\n");
 		 exit(1);
 	}
-	for (int i=0; i<hs->n_buckets ; i++){
+	size_t ctr=hs->n_buckets;
+	for (int i=0; i<ctr ; i++){
 		bucket_free(hs->buckets[i]);
 	}
 	free(hs->buckets);
