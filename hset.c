@@ -22,7 +22,7 @@ hset* hset_new(unsigned long int(*hash_func)(const char*), size_t sz)
 {
 	hset *hset_ret=malloc(sizeof (hset));
 	hset_ret->hash_func = hash_func;
-	bucket **new_buckets=malloc(sizeof(bucket*) * sz);
+	bucket **new_buckets=(bucket**)malloc(sizeof(bucket) * sz);
 	//set each pointer in the array to an empty bucket, "NULL"
 	for (int i=0; i<sz;i++){
 		new_buckets[i]=NULL;

@@ -5,7 +5,7 @@
 
 bucket* bucket_cons(const char* s, unsigned long int hash, bucket* prev_head)
 {
-	bucket *add_bucket = malloc(sizeof (bucket));
+	bucket *add_bucket = malloc(sizeof(bucket));
 	add_bucket->string = strdup(s);
 	add_bucket->hash = hash;
 	add_bucket->next = prev_head;
@@ -53,7 +53,6 @@ void bucket_free(bucket* b)
 		//char *str = (char *)malloc(sizeof(char));
 		//str=strdup(to_free->string);
 		free(to_free->string);
-		free(to_free->next);
 		free(to_free);
 	}
 	free(b);
